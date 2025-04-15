@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './App.css';
+import './index.css';
 import ExpenseItem from './components/ExpenseItem';
 
 function App() {
@@ -29,103 +29,69 @@ function App() {
   };
 
   return (
-    <div className="container p-4">
-      <h1 className="text-2xl font-bold mb-2">Expense Tracker</h1>
-      <p className="mb-4">Start taking control of your finances and life. Record, categorize and analyze your spending.</p>
+    <div className="max-w-5xl mx-auto p-6">
+      <h1 className="text-3xl font-bold mb-2 text-gray-800">Expense Tracker</h1>
+      <p className="mb-6 text-gray-600">
+        Start taking control of your finances and life. Record, categorize and analyze your spending.
+      </p>
 
-      <form onSubmit={handleSubmit} className="flex items-end space-x-4 flex-wrap mb-6">
-        <div className="flex flex-col">
-          <label htmlFor="name" className="text-sm font-semibold">Name</label>
-          <input
-            id="name"
-            type="text"
-            placeholder="Expense Name"
-            className="border p-2 rounded"
-            value={formData.name}
-            onChange={handleChange}
-          />
-        </div>
+      <form onSubmit={handleSubmit} className="form">
+  <div className="form-group">
+    <label htmlFor="name">Name</label>
+    <input id="name" type="text" value={formData.name} onChange={handleChange} />
+  </div>
 
-        <div className="flex flex-col">
-          <label htmlFor="description" className="text-sm font-semibold">Description</label>
-          <input
-            id="description"
-            type="text"
-            placeholder="Description"
-            className="border p-2 rounded"
-            value={formData.description}
-            onChange={handleChange}
-          />
-        </div>
+  <div className="form-group">
+    <label htmlFor="description">Description</label>
+    <input id="description" type="text" value={formData.description} onChange={handleChange} />
+  </div>
 
-        <div className="flex flex-col">
-          <label htmlFor="category" className="text-sm font-semibold">Category</label>
-          <input
-            id="category"
-            type="text"
-            placeholder="Category"
-            className="border p-2 rounded"
-            value={formData.category}
-            onChange={handleChange}
-          />
-        </div>
+  <div className="form-group">
+    <label htmlFor="category">Category</label>
+    <input id="category" type="text" value={formData.category} onChange={handleChange} />
+  </div>
 
-        <div className="flex flex-col">
-          <label htmlFor="amount" className="text-sm font-semibold">Amount</label>
-          <input
-            id="amount"
-            type="number"
-            placeholder="Amount"
-            className="border p-2 rounded"
-            value={formData.amount}
-            onChange={handleChange}
-          />
-        </div>
+  <div className="form-group">
+    <label htmlFor="amount">Amount</label>
+    <input id="amount" type="number" value={formData.amount} onChange={handleChange} />
+  </div>
 
-        <div className="flex flex-col">
-          <label htmlFor="date" className="text-sm font-semibold">Date</label>
-          <input
-            id="date"
-            type="date"
-            className="border p-2 rounded"
-            value={formData.date}
-            onChange={handleChange}
-          />
-        </div>
+  <div className="form-group">
+    <label htmlFor="date">Date</label>
+    <input id="date" type="date" value={formData.date} onChange={handleChange} />
+  </div>
 
-        <button
-          type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-        >
-          Add
-        </button>
-      </form>
+  <button type="submit">Add</button>
+</form>
 
-      <table className="w-full border-collapse border">
-        <thead className="bg-gray-100">
-          <tr>
-            <th className="border px-4 py-2">Name</th>
-            <th className="border px-4 py-2">Description</th>
-            <th className="border px-4 py-2">Category</th>
-            <th className="border px-4 py-2">Amount ($)</th>
-            <th className="border px-4 py-2">Date</th>
-            <th className="border px-4 py-2">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {expenses.map((expense, index) => (
-            <ExpenseItem
-              key={index}
-              name={expense.name}
-              description={expense.description}
-              category={expense.category}
-              amount={expense.amount}
-              date={expense.date}
-              onDelete={() => handleDelete(index)}
-            />
-          ))}
-        </tbody>
-      </table>
+<div className="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Category</th>
+        <th>Amount ($)</th>
+        <th>Date</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {expenses.map((expense, index) => (
+        <ExpenseItem
+          key={index}
+          name={expense.name}
+          description={expense.description}
+          category={expense.category}
+          amount={expense.amount}
+          date={expense.date}
+          onDelete={() => handleDelete(index)}
+        />
+      ))}
+    </tbody>
+  </table>
+</div>
+
     </div>
   );
 }
